@@ -39,10 +39,19 @@ namespace ToDo
             User user = new User();
             user.Password = txtPassword.Text;
             user.UserName = txtUserName.Text;
+            user = UserController.Login(user);
 
-            if (UserController.Login(user))
+
+            if (user.Id != 0)
             {
-                MessageBox.Show("BASARILI");
+                if (user.isAdmin) 
+                {
+                    Dashboard dashboard = new Dashboard();
+                    dashboard.Show();
+                    
+                }
+
+                MessageBox.Show("BASARILI " + user.UserName);
             }
             else
             {
