@@ -83,17 +83,19 @@
             // btnSignUp
             // 
             this.btnSignUp.BackColor = System.Drawing.Color.MediumPurple;
-            this.btnSignUp.Location = new System.Drawing.Point(140, 149);
+            this.btnSignUp.Location = new System.Drawing.Point(188, 185);
             this.btnSignUp.Name = "btnSignUp";
             this.btnSignUp.Size = new System.Drawing.Size(93, 23);
             this.btnSignUp.TabIndex = 5;
             this.btnSignUp.Text = "SIGN UP";
             this.btnSignUp.UseVisualStyleBackColor = false;
+            this.btnSignUp.Visible = false;
+            this.btnSignUp.Click += new System.EventHandler(this.btnSignUp_Click);
             // 
             // btnSignIn
             // 
             this.btnSignIn.BackColor = System.Drawing.Color.MediumPurple;
-            this.btnSignIn.Location = new System.Drawing.Point(18, 149);
+            this.btnSignIn.Location = new System.Drawing.Point(105, 145);
             this.btnSignIn.Name = "btnSignIn";
             this.btnSignIn.Size = new System.Drawing.Size(93, 23);
             this.btnSignIn.TabIndex = 4;
@@ -169,6 +171,7 @@
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Login_FormClosed);
             this.grpSignIn.ResumeLayout(false);
             this.grpSignIn.PerformLayout();
             this.ResumeLayout(false);

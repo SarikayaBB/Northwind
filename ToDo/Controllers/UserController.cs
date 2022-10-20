@@ -13,6 +13,7 @@ namespace ToDo.Controllers
     {
         public static User Login(User user)
         {
+
             SqlConnection conn = db.Conn();
             SqlCommand cmd = new SqlCommand("SELECT * FROM Users WHERE UserName = @UserName AND Password = @Password AND isActive=1 AND isDeleted=0", conn);
             cmd.Parameters.AddWithValue("@UserName", user.UserName);
@@ -70,23 +71,63 @@ namespace ToDo.Controllers
 
         public static User Add(User user)
         {
-            /*  SqlConnection conn = db.Conn();
-              SqlCommand cmd = new SqlCommand("INSERT INTO Users (UserName,Password) VALUES (@UserName,@Password)", conn);
-              cmd.Parameters.AddWithValue("@UserName", user.UserName);
-              cmd.Parameters.AddWithValue("@Password", user.Password);
-              conn.Open();
-              cmd.ExecuteNonQuery();
-              /* SqlDataReader dr = cmd.ExecuteReader();
-              conn.Close();*/
+            try
+            {
+                SqlConnection conn = db.Conn();
+                SqlCommand cmd = new SqlCommand("INSERT INTO Users (UserName,Password,dateModified) VALUES (@userName,@password,GETDATE())", conn);
+                cmd.Parameters.AddWithValue("@userName", user.UserName);
+                cmd.Parameters.AddWithValue("@password", user.Password);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            catch (Exception e)
+            {
+
+            }
             return user;
 
         }
         public static bool Delete(User user)
         {
+            SqlConnection conn = db.Conn();
+            try
+            {
+                SqlCommand cmd = new SqlCommand("UPDATE Users SET isDeleted=1, dateModified=GETDATE() WHERE Username=@userName AND Password=@password ", conn);
+                cmd.Parameters.AddWithValue("@userName", user.UserName);
+                cmd.Parameters.AddWithValue("@password", user.Password);
+                // cmd.Parameters.AddWithValue("@id", user.Id);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
             return true;
         }
         public static User Update(User user)
         {
+            try
+            {
+                SqlConnection conn = db.Conn();
+                SqlCommand cmd = new SqlCommand("UPDATE Users SET UserName=@userName, Password=@password, dateModified=GETDATE() WHERE Id=@id", conn);
+                cmd.Parameters.AddWithValue("@UserName", user.UserName);
+                cmd.Parameters.AddWithValue("@id", user.Id);
+                cmd.Parameters.AddWithValue("@password", user.Password);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            catch (Exception e)
+            {
+
+            }
             return user;
         }
 
