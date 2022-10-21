@@ -28,15 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.lstUserName = new System.Windows.Forms.TextBox();
             this.lstPassword = new System.Windows.Forms.TextBox();
             this.lblUser = new System.Windows.Forms.Label();
             this.lblPassword = new System.Windows.Forms.Label();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.lstBox = new System.Windows.Forms.ListBox();
-            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.userBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.btnNewAccount = new System.Windows.Forms.Button();
             this.grpUpdate = new System.Windows.Forms.GroupBox();
             this.grpNew = new System.Windows.Forms.GroupBox();
@@ -47,8 +44,6 @@
             this.txtNewAccount = new System.Windows.Forms.TextBox();
             this.btnDelete = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource1)).BeginInit();
             this.grpUpdate.SuspendLayout();
             this.grpNew.SuspendLayout();
             this.SuspendLayout();
@@ -105,14 +100,7 @@
             this.lstBox.Size = new System.Drawing.Size(151, 184);
             this.lstBox.TabIndex = 7;
             this.lstBox.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
-            // 
-            // userBindingSource
-            // 
-            this.userBindingSource.DataSource = typeof(ToDo.Models.User);
-            // 
-            // userBindingSource1
-            // 
-            this.userBindingSource1.DataSource = typeof(ToDo.Models.User);
+            this.lstBox.DoubleClick += new System.EventHandler(this.lstBox_DoubleClick);
             // 
             // btnNewAccount
             // 
@@ -224,10 +212,9 @@
             this.Controls.Add(this.btnNewAccount);
             this.Controls.Add(this.lstBox);
             this.Name = "Dashboard";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Dashboard_FormClosed);
             this.Load += new System.EventHandler(this.Dashboard_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource1)).EndInit();
             this.grpUpdate.ResumeLayout(false);
             this.grpUpdate.PerformLayout();
             this.grpNew.ResumeLayout(false);
@@ -246,8 +233,6 @@
         private Label lblPassword;
         private Button btnUpdate;
         private ListBox lstBox;
-        private BindingSource userBindingSource;
-        private BindingSource userBindingSource1;
         private Button btnNewAccount;
         private GroupBox grpUpdate;
         private GroupBox grpNew;

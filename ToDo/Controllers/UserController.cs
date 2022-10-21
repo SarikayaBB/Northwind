@@ -69,26 +69,41 @@ namespace ToDo.Controllers
             return list;
         }
 
-        public static User Add(User user)
+        public static Result Add(User user)
         {
+            SqlConnection conn = db.Conn();
             try
             {
-                SqlConnection conn = db.Conn();
                 SqlCommand cmd = new SqlCommand("INSERT INTO Users (UserName,Password,dateModified) VALUES (@userName,@password,GETDATE())", conn);
                 cmd.Parameters.AddWithValue("@userName", user.UserName);
                 cmd.Parameters.AddWithValue("@password", user.Password);
                 conn.Open();
                 cmd.ExecuteNonQuery();
-                conn.Close();
+
             }
             catch (Exception e)
             {
+                if (conn.State == System.Data.ConnectionState.Open)
+                {
+                    conn.Close();
+                    conn.Dispose();
+                }
+                 string msg = "";
+                if (e.Message.ToLower().Contains("duplicate"))
+                {
+                    msg = "FARKLI ISIM KULLANIN, AYNI ISIMDE KULLANICI OLAMAZ.";
+                }
 
+                return new Result { Status = ResultStatus.Fail, Message = msg };
             }
-            return user;
+            finally
+            {
+                conn.Close();
+            }
+            return new Result { Status = ResultStatus.Success, Message = "Successfully signed up." };
 
         }
-        public static bool Delete(User user)
+        public static Result Delete(User user)
         {
             SqlConnection conn = db.Conn();
             try
@@ -102,14 +117,21 @@ namespace ToDo.Controllers
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message);
+
+                if (conn.State == System.Data.ConnectionState.Open)
+                {
+                    conn.Close();
+                    conn.Dispose();
+                }
+                return new Result { Status = ResultStatus.Fail, Message = e.Message };
             }
             finally
             {
                 conn.Close();
+                conn.Dispose();
             }
+            return new Result { Status = ResultStatus.Success, Message = "SILME ISLEMI BASARILI" };
 
-            return true;
         }
         public static User Update(User user)
         {
