@@ -91,14 +91,17 @@ namespace ToDo
             User user = (User)lstBox.SelectedItem;
             /*user.UserName = lstUserName.Text;
             user.Password = lstPassword.Text;*/
-            Result res = UserController.Delete(user);
+
             //MessageBox.Show(res.Message);
-            MB mb = new MB("BASARILI",res.Message);
-            mb.ShowDialog();
+            DialogResult inc = MesajKutusu.Goster("SILME ISLEMI", "EMIN MISINIZ?", MessageBoxButtons.YesNo);
+            if (inc == DialogResult.Yes)
+            {
+                Result res = UserController.Delete(user);
+                MesajKutusu.Goster("BASARILI", res.Message);
+                list = UserController.GetAll();
+                lstBox.DataSource = list;
 
-
-            list = UserController.GetAll();
-            lstBox.DataSource = list;
+            }
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
@@ -109,7 +112,7 @@ namespace ToDo
 
         private void lstBox_DoubleClick(object sender, EventArgs e)
         {
-            
+
         }
     }
 }

@@ -131,7 +131,7 @@ namespace ToDo.Controllers
                 conn.Dispose();
             }
             return new Result { Status = ResultStatus.Success, Message = "SILME ISLEMI BASARILI" };
-
+            
         }
         public static User Update(User user)
         {

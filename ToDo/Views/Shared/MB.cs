@@ -12,12 +12,20 @@ namespace ToDo
 {
     public partial class MB : Form
     {
-        public MB(string caption,string message)
+        public MB(string caption, string message, MessageBoxButtons buttons = MessageBoxButtons.OK)
         {
             InitializeComponent();
             lblCaption.Text = caption;
             lblMessage.Text = message;
 
+            if (buttons == MessageBoxButtons.OK)
+            {
+                pnlOK.Visible = true;
+            }
+            else if (buttons == MessageBoxButtons.YesNo)
+            {
+                pnlYesNo.Visible = true;
+            }
 
         }
 
@@ -39,6 +47,22 @@ namespace ToDo
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Dispose();
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+            this.Dispose();
+        }
+
+        private void btnYes_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Yes;
+        }
+
+        private void btnNo_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.No;
         }
     }
 }

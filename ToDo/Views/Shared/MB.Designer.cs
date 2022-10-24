@@ -34,8 +34,15 @@
             this.lblCaption = new System.Windows.Forms.Label();
             this.lblMessage = new System.Windows.Forms.Label();
             this.picIcon = new System.Windows.Forms.PictureBox();
+            this.pnlOK = new System.Windows.Forms.Panel();
+            this.btnOK = new System.Windows.Forms.Button();
+            this.pnlYesNo = new System.Windows.Forms.Panel();
+            this.btnNo = new System.Windows.Forms.Button();
+            this.btnYes = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picIcon)).BeginInit();
+            this.pnlOK.SuspendLayout();
+            this.pnlYesNo.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -94,12 +101,75 @@
             this.picIcon.TabIndex = 2;
             this.picIcon.TabStop = false;
             // 
+            // pnlOK
+            // 
+            this.pnlOK.Controls.Add(this.btnOK);
+            this.pnlOK.Location = new System.Drawing.Point(167, 208);
+            this.pnlOK.Name = "pnlOK";
+            this.pnlOK.Size = new System.Drawing.Size(251, 45);
+            this.pnlOK.TabIndex = 3;
+            this.pnlOK.Visible = false;
+            // 
+            // btnOK
+            // 
+            this.btnOK.BackColor = System.Drawing.Color.Black;
+            this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOK.Font = new System.Drawing.Font("Modern No. 20", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
+            this.btnOK.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnOK.Location = new System.Drawing.Point(72, 3);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(98, 39);
+            this.btnOK.TabIndex = 0;
+            this.btnOK.Text = "OK";
+            this.btnOK.UseVisualStyleBackColor = false;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            // 
+            // pnlYesNo
+            // 
+            this.pnlYesNo.Controls.Add(this.btnNo);
+            this.pnlYesNo.Controls.Add(this.btnYes);
+            this.pnlYesNo.Location = new System.Drawing.Point(164, 205);
+            this.pnlYesNo.Name = "pnlYesNo";
+            this.pnlYesNo.Size = new System.Drawing.Size(251, 45);
+            this.pnlYesNo.TabIndex = 4;
+            this.pnlYesNo.Visible = false;
+            // 
+            // btnNo
+            // 
+            this.btnNo.BackColor = System.Drawing.Color.Black;
+            this.btnNo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNo.Font = new System.Drawing.Font("Modern No. 20", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
+            this.btnNo.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnNo.Location = new System.Drawing.Point(134, 3);
+            this.btnNo.Name = "btnNo";
+            this.btnNo.Size = new System.Drawing.Size(98, 39);
+            this.btnNo.TabIndex = 1;
+            this.btnNo.Text = "NO";
+            this.btnNo.UseVisualStyleBackColor = false;
+            this.btnNo.Click += new System.EventHandler(this.btnNo_Click);
+            // 
+            // btnYes
+            // 
+            this.btnYes.BackColor = System.Drawing.Color.Black;
+            this.btnYes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnYes.Font = new System.Drawing.Font("Modern No. 20", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
+            this.btnYes.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnYes.Location = new System.Drawing.Point(3, 3);
+            this.btnYes.Name = "btnYes";
+            this.btnYes.Size = new System.Drawing.Size(98, 39);
+            this.btnYes.TabIndex = 0;
+            this.btnYes.Text = "YES";
+            this.btnYes.UseVisualStyleBackColor = false;
+            this.btnYes.Click += new System.EventHandler(this.btnYes_Click);
+            // 
             // MB
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkViolet;
-            this.ClientSize = new System.Drawing.Size(493, 189);
+            this.ClientSize = new System.Drawing.Size(493, 276);
+            this.Controls.Add(this.pnlYesNo);
+            this.Controls.Add(this.pnlOK);
             this.Controls.Add(this.picIcon);
             this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.panel1);
@@ -110,6 +180,8 @@
             this.Load += new System.EventHandler(this.MB_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picIcon)).EndInit();
+            this.pnlOK.ResumeLayout(false);
+            this.pnlYesNo.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -121,5 +193,10 @@
         private Button btnClose;
         private Label lblMessage;
         private PictureBox picIcon;
+        private Panel pnlOK;
+        private Button btnOK;
+        private Panel pnlYesNo;
+        private Button btnNo;
+        private Button btnYes;
     }
 }
