@@ -9,17 +9,20 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ToDo.Controllers;
 using ToDo.Models;
+using ToDo.Views;
 
 namespace ToDo
 {
     public partial class Login : Form
     {
+       Dashboard dashboard = new Dashboard();
+        
         public Login()
         {
 
             InitializeComponent();
         }
-        Dashboard dashboard = new Dashboard();
+        
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
@@ -44,19 +47,24 @@ namespace ToDo
             user.UserName = txtUserName.Text;
             user = UserController.Login(user);
 
-
+            // ctrl d kopyalama, alt shift . next occurence ctl k d prettier
             if (user.Id != 0)
             {
                 if (user.isAdmin)
                 {
-
+                    MesajKutusu.Goster("BASARILI!", "HOSGELDINIZ " + user.UserName);
                     dashboard.Show();
                     this.Hide();
+                } else
+                {
+                    TaskList taskList = new TaskList(user);
+                    taskList.Show();
+                    
                 }
             }
             else
             {
-                MessageBox.Show("BASARISIZ");
+                MesajKutusu.Goster("HATA!", "HATALI GIRIS YAPTINIZ.");
             }
         }
 
