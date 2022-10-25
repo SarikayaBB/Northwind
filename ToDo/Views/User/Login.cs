@@ -11,6 +11,7 @@ using ToDo.Controllers;
 using ToDo.Models;
 using ToDo.Views;
 
+
 namespace ToDo
 {
     public partial class Login : Form
@@ -57,8 +58,10 @@ namespace ToDo
                     this.Hide();
                 } else
                 {
-                    TaskList taskList = new TaskList(user);
-                    taskList.Show();
+                    /*TaskList taskList = new TaskList(user);
+                    taskList.Show();*/
+                    TaList tl = new TaList(user);
+                    tl.ShowDialog();
                     
                 }
             }

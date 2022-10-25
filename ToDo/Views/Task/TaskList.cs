@@ -11,13 +11,16 @@ using ToDo.Models;
 
 namespace ToDo
 {
+
     public partial class TaskList : Form
     {
+        User _user;
         public TaskList(User user)
         {
+  /*          _user = user;
 
             InitializeComponent();
-            lblKullanici.Text = user.UserName;
+            lblKullanici.Text = _user.UserName;*/
         }
     }
 }

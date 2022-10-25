@@ -18,5 +18,10 @@ namespace ToDo.Models
         public bool isDeleted { get; set; }
         public DateTime dateCreated { get; set; }
         public DateTime dateModified { get; set; }
+
+        public static implicit operator System.Threading.Tasks.Task(Task v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
