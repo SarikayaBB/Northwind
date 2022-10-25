@@ -61,7 +61,7 @@ namespace ToDo
                 Result res = TaskController.Delete(_task);
                 if (res.Status == ResultStatus.Success)
                 {
-                    this.Visible = false;
+                    this.ParentForm.Refresh();
                 }
             }
         }

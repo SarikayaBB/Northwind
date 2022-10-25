@@ -144,10 +144,10 @@ namespace ToDo.Controllers
             SqlConnection conn = db.Conn();
             try
             {
-                SqlCommand cmd = new SqlCommand("UPDATE Tasks SET Description=@description,Subject=@subject,EndDate=@endDate", conn);
+                SqlCommand cmd = new SqlCommand("UPDATE Tasks SET Description=@description,Subject=@subject,EndDate=@endDate WHERE Id=@id", conn);
                 // cmd.Parameters.AddWithValue("@userId", task.UserId);
                 cmd.Parameters.AddWithValue("@description", task.Description);
-                //cmd.Parameters.AddWithValue("@id", task.Id);
+                cmd.Parameters.AddWithValue("@id", task.Id);
                 cmd.Parameters.AddWithValue("@subject", task.Subject);
                 cmd.Parameters.AddWithValue("@EndDate", "2000.10.10");
              //   cmd.Parameters.AddWithValue("@dateModified", "GETDATE()");
