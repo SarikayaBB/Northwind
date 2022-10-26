@@ -61,7 +61,7 @@ namespace ToDo
                 Result res = TaskController.Delete(_task);
                 if (res.Status == ResultStatus.Success)
                 {
-                    this.ParentForm.Refresh();
+                    this.Visible = false;
                 }
             }
         }
@@ -71,11 +71,14 @@ namespace ToDo
             DialogResult dr = MesajKutusu.Goster("GUNCELLEME", "EMIN MISINIZ?", MessageBoxButtons.YesNo);
             if (dr == DialogResult.Yes)
             {
-                Result res = TaskController.Update(_task);
+                /*Result res = TaskController.Update(_task);
                 if (res.Status == ResultStatus.Success)
                 {
                     this.ParentForm.Refresh();
-                }
+                }*/
+                TaskUpdate taskUpdate = new TaskUpdate(_task);
+                taskUpdate.Show();
+                
             }
         }
     }

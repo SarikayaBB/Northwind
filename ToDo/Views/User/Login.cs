@@ -61,6 +61,7 @@ namespace ToDo
                     /*TaskList taskList = new TaskList(user);
                     taskList.Show();*/
                     TaList tl = new TaList(user);
+                    this.Hide();
                     tl.ShowDialog();
                     
                 }
@@ -77,6 +78,11 @@ namespace ToDo
         }
 
         private void btnSignUp_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Login_Load(object sender, EventArgs e)
         {
 
         }

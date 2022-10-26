@@ -53,12 +53,12 @@ namespace ToDo.Controllers
             SqlConnection conn = db.Conn();
             try
             {
-                SqlCommand cmd = new SqlCommand("INSERT INTO  Tasks (UserId,Subject,Description,EndDate,dateModified) VALUES (@userId,@subject,@description,@endDate,@dateModified)", conn);
+                SqlCommand cmd = new SqlCommand("INSERT INTO  Tasks (UserId,Subject,Description,EndDate,dateModified) VALUES (@userId,@subject,@description,@endDate,GETDATE())", conn);
                 cmd.Parameters.AddWithValue("@userId", task.UserId);
                 cmd.Parameters.AddWithValue("@subject", task.Subject);
                 cmd.Parameters.AddWithValue("@description", task.Description);
                 cmd.Parameters.AddWithValue("@endDate", task.endDate);
-                cmd.Parameters.AddWithValue("@dateModified", "GETDATE()");
+                
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -77,7 +77,7 @@ namespace ToDo.Controllers
                 conn.Close();
                 conn.Dispose();
             }
-            MesajKutusu.Goster("BASARILI!", "TAMAMLADINIZ! TEBRIKLER.");
+            MesajKutusu.Goster("BASARILI!", "BASARIYLA EKLEDINIZ! TEBRIKLER.");
             return new Result { Message = "BASARIYLA EKLENDI.", Status = ResultStatus.Success };
         }
         public static Result Complete(Models.Task task)
@@ -150,7 +150,7 @@ namespace ToDo.Controllers
                 cmd.Parameters.AddWithValue("@id", task.Id);
                 cmd.Parameters.AddWithValue("@subject", task.Subject);
                 cmd.Parameters.AddWithValue("@EndDate", "2000.10.10");
-             //   cmd.Parameters.AddWithValue("@dateModified", "GETDATE()");
+                cmd.Parameters.AddWithValue("@dateModified", DateTime.Now);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
