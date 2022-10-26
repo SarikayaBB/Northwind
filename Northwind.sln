@@ -5,7 +5,9 @@ VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Northwind", "Northwind\Northwind.csproj", "{2C2D2FD5-F234-48D1-9F81-A238CDAC988B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDo", "ToDo\ToDo.csproj", "{4EBC2194-303B-48D5-8914-2C2F35E7FE8C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDo", "ToDo\ToDo.csproj", "{4EBC2194-303B-48D5-8914-2C2F35E7FE8C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoEF", "ToDoEF\ToDoEF.csproj", "{5CC0BE1B-1A13-4909-84CF-F6852B80DDE6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{4EBC2194-303B-48D5-8914-2C2F35E7FE8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4EBC2194-303B-48D5-8914-2C2F35E7FE8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4EBC2194-303B-48D5-8914-2C2F35E7FE8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CC0BE1B-1A13-4909-84CF-F6852B80DDE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CC0BE1B-1A13-4909-84CF-F6852B80DDE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CC0BE1B-1A13-4909-84CF-F6852B80DDE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CC0BE1B-1A13-4909-84CF-F6852B80DDE6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
