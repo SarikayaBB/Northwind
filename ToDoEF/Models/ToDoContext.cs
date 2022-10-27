@@ -30,7 +30,6 @@ namespace ToDoEF.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //fluent api
             modelBuilder.UseCollation("Turkish_100_CI_AS");
 
             modelBuilder.Entity<Task>(entity =>

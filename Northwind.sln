@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Northwind", "Northwind\Nort
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDo", "ToDo\ToDo.csproj", "{4EBC2194-303B-48D5-8914-2C2F35E7FE8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoEF", "ToDoEF\ToDoEF.csproj", "{5CC0BE1B-1A13-4909-84CF-F6852B80DDE6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDoEF", "ToDoEF\ToDoEF.csproj", "{5CC0BE1B-1A13-4909-84CF-F6852B80DDE6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NorthWind_EF", "NorthWind_EF\NorthWind_EF.csproj", "{734A9B46-9212-4A3B-ACDE-3040BC3C2C22}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{5CC0BE1B-1A13-4909-84CF-F6852B80DDE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5CC0BE1B-1A13-4909-84CF-F6852B80DDE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5CC0BE1B-1A13-4909-84CF-F6852B80DDE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{734A9B46-9212-4A3B-ACDE-3040BC3C2C22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{734A9B46-9212-4A3B-ACDE-3040BC3C2C22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{734A9B46-9212-4A3B-ACDE-3040BC3C2C22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{734A9B46-9212-4A3B-ACDE-3040BC3C2C22}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -38,6 +38,9 @@
     <Compile Update="Views\Task\TaList.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Views\Task\TaskAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Views\Task\TaskItem.cs">
       <SubType>UserControl</SubType>
     </Compile>

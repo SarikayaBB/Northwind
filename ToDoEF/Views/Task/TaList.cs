@@ -38,10 +38,10 @@ namespace ToDoEF
 
         }
         private void btnAdd11_Click(object sender, EventArgs e)
-        {/*
+        {
             TaskAdd taskAdd = new TaskAdd(_user);
             taskAdd.ShowDialog();
-            Doldur();*/
+            Doldur();
         }
         private void TaList_FormClosed(object sender, FormClosedEventArgs e)
         {

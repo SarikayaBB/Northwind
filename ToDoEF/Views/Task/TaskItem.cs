@@ -32,13 +32,12 @@ namespace ToDoEF
         {
         }
         private void cbIsDone_CheckedChanged(object sender, EventArgs e)
-        {/*
+        {
             if (cbIsDone.Checked)
             {
                 DialogResult dr = MesajKutusu.Goster("TAMAMLANDI MI?", "EMIN MISINIZ?", MessageBoxButtons.YesNo);
                 if (dr == DialogResult.Yes)
                 {
-
                     Result res = TaskController.Complete(_task);
                     if (res.Status == ResultStatus.Success)
                     {
@@ -49,9 +48,8 @@ namespace ToDoEF
                 {
                     cbIsDone.Checked = false;
                 }
-            }*/
+            }
         }
-
         private void btnDelete_Click(object sender, EventArgs e)
         {/*
             DialogResult dr = MesajKutusu.Goster("SILINSIN MI?", "EMIN MISINIZ?", MessageBoxButtons.YesNo);

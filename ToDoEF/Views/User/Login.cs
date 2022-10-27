@@ -50,8 +50,8 @@ namespace ToDoEF
                 }
                 else
                 {
-                    TaList taskList = new TaList(user);
-                    taskList.Show();
+                   /* TaList taskList = new TaList(user);
+                    taskList.Show();*/
                     TaList tl = new TaList(user);
                     this.Hide();
                     tl.ShowDialog();
