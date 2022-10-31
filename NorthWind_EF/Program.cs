@@ -1,5 +1,6 @@
 ﻿
 using NorthWind_EF.Models;
+using System.ComponentModel;
 using System.Reflection.Metadata.Ecma335;
 using System.Text.RegularExpressions;
 
@@ -598,13 +599,16 @@ foreach(var p in q30)
 foreach (var c in q31)
 {
     Console.WriteLine(i + " " + c.CompanyName + " " + c.ProductName + " " + c.CategoryId);
-    i++;
+    i++;`
 }*/
 
 // Q32 SELECT c.CategoryName,s.CompanyName,p.ProductName FROM Suppliers s
-// JOIN Products pON s.SupplierID = p.SupplierID
-// JOIN Categories cON p.CategoryID = c.CategoryID
+// JOIN Products p
+// ON s.SupplierID = p.SupplierID
+// JOIN Categories c
+// ON p.CategoryID = c.CategoryID
 // WHERE UPPER(CategoryName) = 'SEAFOOD'
+// select distinct kullanarak duplicate in onune gecilebilir
 
 /*var q32 = db.Suppliers.Join(db.Products,
     s => s.SupplierId,
@@ -624,13 +628,13 @@ foreach (var c in q31)
         sp.ProductName,
         ct.CategoryName
     }
-   ).Where(s=>s.CategoryName.ToUpper()=="SEAFOOD");
-foreach(var c in q32)
+   ).Where(s => s.CategoryName.ToUpper() == "SEAFOOD");
+foreach (var c in q32)
 {
-    Console.WriteLine(i+" " + c.CompanyName + " " + c.ProductName + " " + c.CategoryName);
-    i++;    
-}
-*/
+    Console.WriteLine(i + " " + c.CompanyName + " " + c.ProductName + " " + c.CategoryName);
+    i++;
+}*/
+
 
 // Q33 SELECT o.OrderID,e.FirstName + ' ' + e.LastName AS EmployeeName FROM Orders o JOIN Employees e
 // ON o.EmployeeID = e.EmployeeID
@@ -658,24 +662,26 @@ foreach (var o in q33)
 // ON o.ProductID = p.ProductID
 // GROUP BY p.ProductNameHAVING SUM(o.Quantity)<200
 
-/*var q34 = db.OrderDetails.Join(db.Products,
+var q34 = db.OrderDetails.Join(db.Products,
     o => o.ProductId,
     p => p.ProductId,
     (or, pr) => new
     {
         or.Quantity,
         pr.ProductName,
-    }
-    ).GroupBy(g => g.ProductName).Select(g => new
+    })
+    .GroupBy(g => g.ProductName).Select(g => new
     {
         ProductName = g.Key,
         TotalUnits = g.Sum(o => o.Quantity)
-    }).OrderBy(g => g.ProductName).Where(g => g.TotalUnits < 200);
+    })
+    .OrderBy(g => g.ProductName)
+    .Where(g => g.TotalUnits < 200);
 foreach (var item in q34)
 {
     Console.WriteLine(i + " " + item.ProductName + " " + item.TotalUnits);
     i++;
-}*/
+}
 
 
 // Q35 SELECT c.CompanyName ,COUNT(o.OrderDate) AS NumOrders FROM Orders o JOIN Customers c
@@ -739,3 +745,22 @@ foreach (var o in q36)
     Console.WriteLine(i + " " + o.CompanyName + " " + o.OrderId + " " + o.TotalPrice);
     i++;
 }*/
+
+
+
+// DENEME -- calisti
+// SelectMany ile JOIN ON kismi where ile verilebilir(?) 
+/*var deneme = db.Customers.SelectMany(c=>db.Orders,
+    (c,o)=> new
+    {
+        c.CompanyName,
+        c.CustomerId,
+        o,
+    }
+    ).Where(p => p.o.CustomerId==p.CustomerId && p.o.ShipName == "QUICK-stop");
+
+foreach(var o in deneme)
+{
+    Console.WriteLine(o.o.Freight);
+}*/
+
