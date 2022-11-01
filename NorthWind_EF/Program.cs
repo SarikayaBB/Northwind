@@ -1,6 +1,7 @@
 ﻿
 using NorthWind_EF.Models;
 using System.ComponentModel;
+using System.Data.SqlTypes;
 using System.Reflection.Metadata.Ecma335;
 using System.Text.RegularExpressions;
 
@@ -662,7 +663,7 @@ foreach (var o in q33)
 // ON o.ProductID = p.ProductID
 // GROUP BY p.ProductNameHAVING SUM(o.Quantity)<200
 
-var q34 = db.OrderDetails.Join(db.Products,
+/*var q34 = db.OrderDetails.Join(db.Products,
     o => o.ProductId,
     p => p.ProductId,
     (or, pr) => new
@@ -681,7 +682,7 @@ foreach (var item in q34)
 {
     Console.WriteLine(i + " " + item.ProductName + " " + item.TotalUnits);
     i++;
-}
+}*/
 
 
 // Q35 SELECT c.CompanyName ,COUNT(o.OrderDate) AS NumOrders FROM Orders o JOIN Customers c
@@ -764,3 +765,155 @@ foreach(var o in deneme)
     Console.WriteLine(o.o.Freight);
 }*/
 
+
+
+///// group join deneme
+///SELECT p.ProductName,SUM(od.Quantity) As TotalUnits FROM [Order Details] od JOIN Products p
+//ON od.ProductID = p.ProductID
+//GROUP BY p.ProductName
+//HAVING SUM(od.Quantity)<200
+
+/*var gj = db.Products.GroupJoin(db.OrderDetails, p => p.ProductId, or => or.ProductId,
+    Name=> new {Name =Name.ProductName},
+    gJoin => new {GJ = gJoin} 
+   );
+
+
+
+
+foreach(var product in gj)
+{
+Console.WriteLine(product.Name);
+  
+    foreach(var quant in product.Group)
+    {
+        Console.WriteLine(quant.Quantity);
+    }
+}
+*/
+
+
+//  Q233 select s.SupplierID,s.CompanyName, c.CategoryName,p.ProductName,p.UnitPrice FROM  Products p
+//JOIN Suppliers s ON 
+//s.SupplierID = p.SupplierID
+//JOIN Categories c ON
+//c.CategoryID = p.CategoryID
+
+/*var q233 = db.Products.Join(db.Suppliers, p => p.SupplierId, s => s.SupplierId,
+    (product, supplier) => new
+    {
+        supplier.CompanyName,
+        product.ProductName,
+        product.ProductId,
+        product.UnitPrice,
+        product.CategoryId,
+        product.SupplierId,
+    }).Join(db.Categories, p=>p.CategoryId,c=>c.CategoryId, (pr,ct)=> new
+    {
+        pr.CompanyName,
+        pr.SupplierId,
+        ct.CategoryName,
+        pr.ProductName,
+        pr.UnitPrice,
+    });
+foreach(var o in q233)
+{
+    Console.WriteLine(i + " " + o.SupplierId + " " + o.CompanyName + " " + o.CategoryName + " " + o.ProductName + " " + o.UnitPrice);
+    i++;
+}*/
+
+// Q234 SELECT c.CustomerID, SUM(o.Freight) AS Total FROM Orders o JOIN Customers c 
+//ON o.CustomerID = c.CustomerID
+//GROUP BY c.CustomerID
+//HAVING SUM(o.Freight)>200 ORDER BY Total DESC
+
+/*var q234 = db.Orders.Join(db.Customers, o => o.CustomerId, c => c.CustomerId,
+    (o, c) => new
+    {
+        o.Freight,
+        c.CustomerId,
+    }
+    )
+    .GroupBy(g=>g.CustomerId).Select(s=> new
+    {
+        CustomerId=s.Key,
+        Total=s.Sum(su=>su.Freight),
+    })
+    .Where(w=>w.Total>200)
+    .OrderByDescending(o=>o.Total);
+
+foreach(var o in q234)
+{
+    Console.WriteLine(i+" " + o.CustomerId + " " + o.Total);
+    i++;
+}
+*/
+
+// Q235
+// SELECT o.OrderID,c.ContactName,od.UnitPrice,od.Quantity,od.Discount FROM Orders o JOIN Customers c ON
+//o.CustomerID = c.CustomerID
+//JOIN[Order Details] od ON
+//o.OrderID = od.OrderID
+
+/*var q235 = db.Orders.Join(db.Customers, o => o.CustomerId, c => c.CustomerId,
+    (o, c) => new
+    {
+        o.OrderId,
+        c.ContactName,
+    })
+    .Join(db.OrderDetails, o => o.OrderId, od => od.OrderId,
+    (o, od) => new
+    {
+        o.OrderId,
+        o.ContactName,
+        od.Quantity,
+        od.UnitPrice,
+        od.Discount,
+    });
+foreach(var o in q235)
+{
+    Console.WriteLine(i + " " + o.OrderId + " " + o.ContactName + " " + o.UnitPrice + " " + o.Quantity + " " + o.Discount);
+    i++;
+}*/
+
+// Q236 SELECT e.EmployeeID,e.FirstName+' '+ e.LastName AS Employee ,e1.FirstName + ' ' + e1.LastName AS Manager FROM Employees e JOIN Employees e1 
+//ON e.ReportsTo = e1.EmployeeID
+
+/*var q236 = db.Employees.Select(s=> new
+{
+    s.EmployeeId,
+    s.FirstName,
+    s.LastName,
+    s.ReportsTo
+}).Join(db.Employees, e => e.EmployeeId, em => em.EmployeeId,
+    (e1, e2) => new
+    {
+        EmployeeId = e1.EmployeeId,
+        EmployeeName = e1.FirstName + e1.LastName,
+        ManagerId = e2.EmployeeId,
+        ManagerName = e2.FirstName + e2.LastName,
+        EmployeeReportTo = e1.ReportsTo,
+    }
+    ).Where(w => w.EmployeeReportTo == w.ManagerId);
+
+foreach (var item in q236)
+{
+    Console.WriteLine(i + " " + item.EmployeeId + " " + item.EmployeeName + " REPORTS TO "+item.ManagerName);
+    i++;
+}*/
+
+// q248 SELECT LastName,FirstName,Title , CONVERT(nvarchar,DATEDIFF(DAY,BirthDate,GETDATE())/365) + ' ' + 'Years' FROM Employees
+
+DateTime dt = DateTime.Now;
+
+var q248 = db.Employees.Select(s=> new
+{
+    s.FirstName,
+    s.LastName,
+    s.Title,
+    s.BirthDate,
+    Age = (dt.Year-s.BirthDate.Value.Year)});
+foreach (var item in q248)
+{
+    Console.WriteLine(item.FirstName + " " + item.LastName + " " + item.Title + " " + (item.Age));
+}
