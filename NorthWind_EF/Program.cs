@@ -904,16 +904,17 @@ foreach (var item in q236)
 
 // q248 SELECT LastName,FirstName,Title , CONVERT(nvarchar,DATEDIFF(DAY,BirthDate,GETDATE())/365) + ' ' + 'Years' FROM Employees
 
-DateTime dt = DateTime.Now;
 
-var q248 = db.Employees.Select(s=> new
+DateTime dt = DateTime.Now;
+var q248 = db.Employees.Select(s => new
 {
     s.FirstName,
     s.LastName,
     s.Title,
     s.BirthDate,
-    Age = (dt.Year-s.BirthDate.Value.Year)});
+    Age = (dt-s.BirthDate).Value.TotalDays/365.0
+});
 foreach (var item in q248)
 {
-    Console.WriteLine(item.FirstName + " " + item.LastName + " " + item.Title + " " + (item.Age));
+    Console.WriteLine(item.FirstName + " " + item.LastName + " " + item.Title + " " + (item.Age) + " Years");
 }
